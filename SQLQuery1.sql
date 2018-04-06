@@ -2,16 +2,22 @@ use controle_compras;
 
 select * from compras;
 
-select id,valor, observacoes
-from compras
-where valor between 1000 and 2000
-and data between '2009-01-01' and '2009-03-31';
+insert into compras values (150, '2015-04-15', 'churraqueira',  1);
 
-update compras
-set valor = 1500
-where id = 9; 
+insert into compras (valor, data, recebida) values (150, '2015-04-15', 1);
 
-delete from compras
-where id = 9;
+delete from compras where observacoes is null;
+
+select * from compras where observacoes is null;
+
+alter table compras alter column observacoes nvarchar(200) not null;
+
+
+alter table compras add default '0' for recebida;
+
+insert into compras (valor, data, observacoes) values (200, '2015-10-04', 'testando default');
+
+select * from compras where observacoes = 'testando default';
+
 
 sp_help compras;
